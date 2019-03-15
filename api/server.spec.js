@@ -7,7 +7,6 @@ describe('server', () => {
     it('should set testing environment', () => {
         expect(process.env.DB_ENV).toBe('testing')
     })
-    
 
     describe('Get /games', () => {
         it('should return status 200', async() => {
@@ -48,6 +47,16 @@ describe('server', () => {
         it('should return status 200', async() => {
             const res = await request(server).get('/games/1')
             expect(res.status).toBe(200)
+        })
+    })
+    describe('Delete /games/:id', () => {
+        it('should return status 204', async() => {
+            const res = await request(server).delete('/games/1')
+            expect(res.status).toBe(204)
+        })
+        it('should return status 404', async() => {
+            const res = await request(server).delete('/games/1')
+            expect(res.status).toBe(404)
         })
     })
 })

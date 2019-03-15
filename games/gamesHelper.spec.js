@@ -15,4 +15,15 @@ describe('Games', () => {
             expect(game).toMatchObject({title:'another', genre:'another', release_year:2001})
         })
     })
+    describe('remove()', () => {
+        it('should return the number 1', async() => {
+            const game = await Games.add({title:'gamejjjj', genre:'genrejjjjj', release_year:2000})
+            const deleted = await Games.remove(1)
+            expect(deleted).toBe(1)
+        })
+        it('should return the number zero', async() => {
+            const deleted = await Games.remove(1)
+            expect(deleted).toBe(0)
+        })
+    })
 })
