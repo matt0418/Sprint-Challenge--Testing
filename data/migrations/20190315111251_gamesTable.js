@@ -10,7 +10,7 @@ exports.up = function(knex, Promise) {
       tbl.string('genre', 56)
         .notNullable()
 
-     tbl.integer('release year')
+     tbl.integer('release_year')
   })
 };
 

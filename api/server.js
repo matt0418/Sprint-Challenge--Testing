@@ -1,10 +1,33 @@
 const express = require('express')
 const server = express()
-
+const Games = require('../games/gamesHelper')
 server.use(express.json())
 
 server.get('/', async (req, res) => {
     res.status(200).json({ message: 'We Working' })
+})
+
+server.post('/games', async (req,res) => {
+    const { title, genre} = req.body
+    if (!title || !genre) {
+        res.status(422).json({message: "Please provide all fields"})
+    }
+    try {
+        const game = Games.add(req.body)
+        return res.status(201).json(game)
+    } catch(error) {
+        res.status(500)
+    }
+})
+
+server.get('/games', async (req, res) => {
+    try {
+        const games = await Games.getAll()
+        return res.status(200).json(games)
+    } catch(error) {
+        console.log(error)
+        return res.status(500).json(error)
+    }
 })
 
 module.exports = server
