@@ -10,8 +10,8 @@ server.get('/', async (req, res) => {
 server.post('/games', async (req,res) => {
     const { title, genre} = req.body
     if (!title || !genre) {
-        res.status(422).json({message: "Please provide all fields"})
-    }
+       return res.status(422).json({message: "Please provide all fields"})
+    } 
     try {
         const game = Games.add(req.body)
         return res.status(201).json(game)

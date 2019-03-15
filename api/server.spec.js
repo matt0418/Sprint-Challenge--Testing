@@ -30,8 +30,8 @@ describe('server', () => {
             const res = await request(server).post('/games').send({title:'what', genre:'what',release_year:2000})
             expect(res.status).toBe(201)
         })
-        it.skip('should return status 422 with missing title and genre', async () => {
-            const res = await request(server).post('/games').send({release_year:2000})
+        it('should return status 422 with missing title and genre', async () => {
+            const res = await request(server).post('/games').send({title:'hhh', release_year:2000})
             expect(res.status).toBe(422)
         })
     })
